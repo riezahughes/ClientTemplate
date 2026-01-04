@@ -129,7 +129,6 @@ internal class Program
                 Thread.Sleep(1000);
             }
 
-            archipelagoClient.ShouldSaveStateOnItemReceived = false; // required to stop constant disconnects
             archipelagoClient.CurrentSession.Locations.CheckedLocationsUpdated += APHelpers.Locations_CheckedLocationsUpdated;
 
             GameLocations = LocationHelpers.BuildLocationList(archipelagoClient.Options);
@@ -154,7 +153,7 @@ internal class Program
                 }
                 else if (input?.Trim().ToLower() == "update")
                 {
-                    if (archipelagoClient.GameState.CompletedLocations != null)
+                    if (archipelagoClient.LocationState.CompletedLocations != null)
                     {
                         PlayerStateHelpers.UpdatePlayerState(archipelagoClient.CurrentSession.Items.AllItemsReceived);
                         Console.WriteLine($"Player state updated. Total Count: {archipelagoClient.CurrentSession.Items.AllItemsReceived.Count}");
