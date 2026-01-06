@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Archipelago.Core" Version="1.2.3" />
+    <ProjectReference Include="..\..\..\ap\arson\Archipelago.Core\Archipelago.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
   </ItemGroup>

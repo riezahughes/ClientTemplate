@@ -4,6 +4,7 @@ using Archipelago.Core;
 using Archipelago.Core.GameClients;
 using Archipelago.Core.Models;
 using Archipelago.Core.Util;
+using ClientTemplate;
 using Helpers;
 
 internal class Program
@@ -30,7 +31,7 @@ internal class Program
         // Make sure the connect is initialised
 
 
-        DuckstationClient gameClient = null;
+        GenericGameClient gameClient = null;
         bool clientInitializedAndConnected = false; // Renamed for clarity
         int retryAttempt = 0;
 
@@ -42,7 +43,7 @@ internal class Program
 
             try
             {
-                gameClient = new DuckstationClient();
+                gameClient = new GenericGameClient("DuckStation");
                 clientInitializedAndConnected = true;
             }
             catch (Exception ex)
@@ -68,15 +69,19 @@ internal class Program
         Console.WriteLine("Successfully connected to Duckstation.");
 
         // get the duckstation offset
-        try
-        {
-            Memory.GlobalOffset = Memory.GetDuckstationOffset();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An unexpected error occurred while getting Duckstation memory offset: {ex.Message}");
-            Console.WriteLine(ex); // Print full exception for debugging
-        }
+        // try
+        // {
+        //     Memory.GlobalOffset = Memory.GetDuckstationOffset();
+        // }
+        // catch (Exception ex)
+        // {
+        //     Console.WriteLine($"An unexpected error occurred while getting Duckstation memory offset: {ex.Message}");
+        //     Console.WriteLine(ex); // Print full exception for debugging
+        // }
+
+        var test = Memory.ReadByte(Addresses.test);
+        
+        Console.WriteLine($"Test Address Read Value: {test}");
 
         Console.WriteLine("Enter AP url: eg,archipelago.gg");
         string lineUrl = Console.ReadLine();
@@ -118,7 +123,7 @@ internal class Program
         try
         {
             // 
-            await archipelagoClient.Connect(url + ":" + port, gameName);
+            await archipelagoClient.Connect(url + ":" + port, gameName, slot);
             Console.WriteLine("Connected. Attempting to Log in...");
             await archipelagoClient?.Login(slot, password);
             Console.WriteLine("Logged in!");

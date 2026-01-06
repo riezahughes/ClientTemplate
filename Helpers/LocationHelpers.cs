@@ -22,49 +22,50 @@ namespace Helpers
 
             // regular example: A simple location and a simple change
 
-            locations.Add(new Location()
+            var test = new Location()
             {
-                Id = 1, // the id of the location in the ap world
-                Name = "Test Location 1", // the name you want to give this location
+                Id = 99250000, // the id of the location in the ap world
+                Name = "Boss: Injured Wyvern - Prologue", // the name you want to give this location
                 Address = Addresses.test, // the address of the location you want to deal with
-                CheckType = LocationCheckType.UShort, // the type of value you're watching
+                CheckType = LocationCheckType.Byte, // the type of value you're watching
                 CompareType = LocationCheckCompareType.Match, // the kind of compare you want to do on the value
-                CheckValue = "111" // the value in integer string value
-            });
-
+                CheckValue = "10" // the value in integer string value
+            };
+            
+            locations.Add(test);
             // a bit related address example: Looks for a specific bit going from 0 to 1, counting from the right.
 
-            locations.Add(new Location()
-            {
-                Id = -1,
-                Name = "Cleared Level",
-                Address = 0x000,
-                CheckType = LocationCheckType.Bit,
-                AddressBit = 4
-            });
+            // locations.Add(new Location()
+            // {
+            //     Id = -1,
+            //     Name = "Cleared Level",
+            //     Address = 0x000,
+            //     CheckType = LocationCheckType.Bit,
+            //     AddressBit = 4
+            // });
 
-            // conditional example. Notice that conditions use an Id of -1 but the CompositLocation uses the ID of the location
-            // this is a quick example of an AND condition, you can also use OR and a few other things. 
+            // // conditional example. Notice that conditions use an Id of -1 but the CompositLocation uses the ID of the location
+            // // this is a quick example of an AND condition, you can also use OR and a few other things. 
 
-            List<ILocation> conditionalChoice = new List<ILocation>();
+            // List<ILocation> conditionalChoice = new List<ILocation>();
 
-            conditionalChoice.Add(new Location()
-            {
-                Id = -1,
-                Name = "Cleared Level",
-                Address = 0x000,
-                CheckType = LocationCheckType.Bit,
-                AddressBit = 4
-            });
-            CompositeLocation location = new CompositeLocation()
-            {
-                Name = "test",
-                Id = 111,
-                CheckType = LocationCheckType.AND,
-                Conditions = conditionalChoice
-            };
+            // conditionalChoice.Add(new Location()
+            // {
+            //     Id = -1,
+            //     Name = "Cleared Level",
+            //     Address = 0x000,
+            //     CheckType = LocationCheckType.Bit,
+            //     AddressBit = 4
+            // });
+            // CompositeLocation location = new CompositeLocation()
+            // {
+            //     Name = "test",
+            //     Id = 111,
+            //     CheckType = LocationCheckType.AND,
+            //     Conditions = conditionalChoice
+            // };
 
-            locations.Add(location);
+            // locations.Add(location);
 
             // loop, define and put your addresses together and at the end of this function make sure to return the original locations list we created
 

@@ -65,9 +65,13 @@ namespace Helpers
                 return;
             }
 
+
+
             var message = string.Join("", e.Message.Parts.Select(p => p.Text));
 
             client.AddOverlayMessage(e.Message.ToString());
+
+            Console.WriteLine(message);
 
             // adds coloured messages to terminal
 
