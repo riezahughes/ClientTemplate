@@ -19,7 +19,7 @@ namespace Helpers
         public static bool CheckGoalCondition(ArchipelagoClient client)
         {
 
-            if (client?.GameState?.CompletedLocations == null)
+            if (client?.LocationState?.CompletedLocations == null)
             {
                 return false;
             }
